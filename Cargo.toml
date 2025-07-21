@@ -2,15 +2,20 @@
 name = "mtg-mcp"
 version = "0.1.0"
 edition = "2024"
+authors = ["Pato Lankenau <rust@p.lankenau.io>"]
+license = "MIT"
+description = "An MCP server for Magic: The Gathering card data resources"
+keywords = ["mcp", "ai", "claude", "magic", "deck"]
+repository = "https://github.com/pato/mtg-mcp"
 
 [dependencies]
+anyhow = "1.0"
+async-trait = "0.1"
+futures = "0.3"
 mcp-core = "0.1"
-tokio = { version = "1", features = ["full"] }
 scryfall = "0.22"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-anyhow = "1.0"
+tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
-async-trait = "0.1"
-futures = "0.3"
