@@ -56,15 +56,23 @@ Search for cards:
 search_cards("color:red type:creature cmc:3")
 ```
 
-## Configuration
+## Setup with Claude
 
-Add this to your MCP settings:
+The easiest way to add this to Claude Desktop:
+
+```bash
+claude mcp add mtg-mcp
+```
+
+## Manual Configuration
+
+If you prefer to configure manually, add this to your MCP settings:
 
 ```json
 {
   "mcpServers": {
     "mtg": {
-      "command": "path/to/mtg-mcp"
+      "command": "mtg-mcp"
     }
   }
 }
