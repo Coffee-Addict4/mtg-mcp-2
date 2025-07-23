@@ -168,6 +168,8 @@ All card data is sourced from the Scryfall API (https://scryfall.com/docs/api), 
 
 ## Compliance
 This server adheres to the MTG Optimizer Guidelines specified in the Copilot-Guidelines file:
-- Maintains core functionality integrity
-## Support
-For issues or feature requests, please refer to the project repository and follow the established development guidelines.
+ Maintains core functionality integrity
+ MCP-compliant architecture
+ Minimal dependencies
+ Supports performance monitoring and validation
+ Uses a wrapper script for Windows MCP client compatibility
