@@ -1,0 +1,29 @@
+# Docker ignore patterns for MTG MCP
+# Build artifacts
+target/
+# Note: Cargo.lock is needed for reproducible builds
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation (except guidelines which are required)
+*.md
+!Copilot-Guidelines
+
+# Test files
+test_server.sh
+tests/
+
+# Docker files themselves (to avoid recursion)
+Dockerfile
+docker-compose.yml
+.dockerignore

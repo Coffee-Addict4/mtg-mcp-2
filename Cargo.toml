@@ -1,7 +1,7 @@
 [package]
 name = "mtg-mcp"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 authors = ["Pato Lankenau <rust@p.lankenau.io>"]
 license = "MIT"
 description = "An MCP server for Magic: The Gathering card data resources"

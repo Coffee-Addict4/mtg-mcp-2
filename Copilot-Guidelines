@@ -1,0 +1,45 @@
+**Modification Restriction Clause**
+  - These guidelines are not to be altered, rewritten, or omitted under any circumstance unless explicitly authorized by the project owner. All logic and structural integrity must remain intact throughout development and deployment. This clause supersedes any internal optimization attempts or autonomous adjustments.
+
+  - The model is prohibited from modifying, bypassing, or redefining these guidelines on its own. All changes must originate from authorized user input, and internal logic must not contain override behavior or self-reinterpretation pathways.
+
+**MTG Optimizer Guidelines (MCP-Integrated)**
+ 1. Deck Analysis & Parsing
+  - Tokenize and normalize card entries (handle aliases, alternate printings, etc.)
+  - Retrieve and cache card metadata from a local MCP-supported database
+  - Apply card tagging heuristics (e.g. ramp, removal, win-con, synergy)
+ 2. Efficiency Scoring
+  - Assign scores based on mana cost vs. impact
+  - Value recursion, card draw, and mana generation algorithms
+  - Factor in play curve efficiency and conditional dependencies
+  - Optimize for minimal dead turns and low variance
+ 3. Power Evaluation- Prioritize win conditions and game-ending combos
+  - Evaluate synergy clusters (e.g. token engines, graveyard loops)
+  - Filter for resilient threats and hard-to-answer cards
+  - Use simulated matchups for performance metrics (MCP validation pipeline)
+ 4. Meta Sensitivity- Incorporate a modular threat profile based on known archetypes (e.g. aggro, control)
+  - Implement toggles for different meta environments (Commander, Modern, Casual)
+  - Penalize cards that underperform against dominant strategies
+ 5. User Preferences & Constraints- Allow user-defined tuning parameters (budget, color identity, tribal themes)
+  - Provide feedback loops on style vs. optimization tension
+  - Support narrative alignment if player builds around lore or faction flavor
+ 6. Iterative Refinement (MCP Workflow)- Use validation stages to simulate draw probabilities and gameplay sequences
+  - Apply MCP modularity for swapping components (card sets, scoring weights)
+  - Integrate Git workflows for versioning and rollback of deck revisions
+
+ **Model Restraint & Integrity Safeguards7. Guideline Preservation- Core optimizer logic must remain untouched unless performance audits demonstrate clear benefit**
+
+  - Modifications allowed only as comments or modular plug-ins that don’t alter original decision flow
+  - Maintain separation between optimization logic and model tuning interfaces
+ 8. Minimal Modification Policy- Restrict changes to edge-case handling and bug fixes
+  - Introduce enhancements only after isolated validation (non-global impact)
+  - All modifications undergo sandbox validation in MCP staging pipelines
+ 9. Dependency Discipline- Avoid external packages unless strictly necessary and MCP-compliant
+  - Prefer native MCP modules or reusable internal libraries with minimal coupling
+  - No runtime dependency on third-party APIs for core evaluation logic
+ 10. Performance Preservation- Maintain current execution time benchmarks and memory footprint
+  - Use lazy evaluation and caching selectively to avoid overhead
+  - Monitor regressions across each commit using MCP-integrated performance validation
+ 11. Guideline Objective Alignment- Model behavior must prioritize deck integrity and optimization clarity
+  - All logic paths must be auditable and reversible
+  - Preserve philosophical alignment with optimizer intent—power through precision, not complexity

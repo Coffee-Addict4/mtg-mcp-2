@@ -1,0 +1,150 @@
+{
+  "server_info": {
+    "name": "mtg-mcp",
+    "version": "0.1.0",
+    "protocol_version": "2024-11-05",
+    "description": "Magic: The Gathering MCP Server for card data access via Scryfall API"
+  },
+  "tools": [
+    {
+      "name": "mcp_mtg_search_cards",
+      "description": "Search for Magic: The Gathering cards by name, type, colors, or other criteria using Scryfall query syntax. Returns up to 100 cards matching the search criteria.",
+      "parameters": {
+        "properties": {
+          "query": {
+            "description": "Scryfall search query. Examples: 'lightning bolt' (card name), 'color:red type:creature' (by color and type), 'cmc:3' (by mana cost), 'is:commander' (commanders only), 'legal:modern' (format legal), 'rarity:mythic' (by rarity)",
+            "type": "string"
+          },
+          "limit": {
+            "description": "Maximum number of results to return",
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 10
+          }
+        },
+        "required": ["query"],
+        "type": "object"
+      }
+    },
+    {
+      "name": "mcp_mtg_get_card",
+      "description": "Get detailed information about a specific Magic: The Gathering card by name. Uses fuzzy search to handle typos and partial matches. Returns comprehensive card data including pricing, legality, and metadata.",
+      "parameters": {
+        "properties": {
+          "name": {
+            "description": "Name of the Magic: The Gathering card. Supports fuzzy matching, so typos and partial names are acceptable (e.g., 'lightening bolt' will find 'Lightning Bolt')",
+            "type": "string"
+          }
+        },
+        "required": ["name"],
+        "type": "object"
+      }
+    }
+  ],
+  "connection_info": {
+    "transport": "stdio",
+    "docker_image": "mtg-mcp:latest",
+    "executable": "./mtg-mcp",
+    "working_directory": "/app"
+  },
+  "example_usage": {
+    "search_cards_examples": [
+      {
+        "description": "Search for Lightning Bolt",
+        "request": {
+          "query": "lightning bolt"
+        }
+      },
+      {
+        "description": "Find red creatures with CMC 3",
+        "request": {
+          "query": "color:red type:creature cmc:3",
+          "limit": 20
+        }
+      },
+      {
+        "description": "Search for commanders",
+        "request": {
+          "query": "is:commander"
+        }
+      },
+      {
+        "description": "Find cards legal in Modern format",
+        "request": {
+          "query": "legal:modern rarity:mythic"
+        }
+      }
+    ],
+    "get_card_examples": [
+      {
+        "description": "Get Lightning Bolt details",
+        "request": {
+          "name": "Lightning Bolt"
+        }
+      },
+      {
+        "description": "Fuzzy search with typo",
+        "request": {
+          "name": "lightening bolt"
+        }
+      },
+      {
+        "description": "Partial name search",
+        "request": {
+          "name": "bolt"
+        }
+      }
+    ]
+  },
+  "response_formats": {
+    "search_cards_response": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "Card name" },
+          "mana_cost": { "type": "string", "description": "Mana cost (e.g., '{1}{R}')" },
+          "type_line": { "type": "string", "description": "Type line (e.g., 'Instant')" },
+          "oracle_text": { "type": "string", "description": "Rules text" },
+          "colors": { "type": "array", "items": { "type": "string" }, "description": "Card colors" },
+          "cmc": { "type": "number", "description": "Converted mana cost" },
+          "power": { "type": "string", "description": "Creature power (if applicable)" },
+          "toughness": { "type": "string", "description": "Creature toughness (if applicable)" },
+          "set": { "type": "string", "description": "Set code" },
+          "rarity": { "type": "string", "description": "Card rarity" },
+          "image_uris": { "type": "object", "description": "Image URLs" },
+          "prices": { "type": "object", "description": "Price information" },
+          "legalities": { "type": "object", "description": "Format legalities" }
+        }
+      }
+    },
+    "get_card_response": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "mana_cost": { "type": "string" },
+        "type_line": { "type": "string" },
+        "oracle_text": { "type": "string" },
+        "colors": { "type": "array", "items": { "type": "string" } },
+        "color_identity": { "type": "array", "items": { "type": "string" } },
+        "cmc": { "type": "number" },
+        "power": { "type": "string" },
+        "toughness": { "type": "string" },
+        "loyalty": { "type": "string", "description": "Planeswalker loyalty" },
+        "set": { "type": "string" },
+        "set_name": { "type": "string" },
+        "rarity": { "type": "string" },
+        "flavor_text": { "type": "string" },
+        "artist": { "type": "string" },
+        "image_uris": { "type": "object" },
+        "prices": { "type": "object" },
+        "legalities": { "type": "object" },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "produced_mana": { "type": "array", "items": { "type": "string" } },
+        "rulings_uri": { "type": "string" },
+        "scryfall_uri": { "type": "string" }
+      }
+    }
+  }
+}
